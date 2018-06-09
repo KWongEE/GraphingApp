@@ -1,21 +1,3 @@
-'use strict';
-
-// Declare app level module which depends on views, and components
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
-  // 'chart.js'
-])
-.directive("importSheetJS",[SheetJSImportDirective])
-.config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
-
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
-
-
 function SheetJSImportDirective() {
   return {
     scope: { opts: '=' },
@@ -24,7 +6,6 @@ function SheetJSImportDirective() {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-          debugger;
           /* read workbook */
           var bstr = e.target.result;
           var workbook = XLSX.read(bstr, {type:'binary'});
